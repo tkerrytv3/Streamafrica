@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>STREAM AFRICA | Professional Engagement</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root {
+--primary-forest: #0a1f1c; /* Background from image */
+--matcha-accent: #b8d5b0; /* Light green from image */
+--white: #ffffff;
+--card-bg: rgba(255, 255, 255, 0.05);
+--live-green: #27ae60;
+}
+
+html {
+scroll-behavior: smooth;
+}
+
+body {
+margin: 0;
+padding: 0;
+background-color: var(--primary-forest);
+font-family: 'Inter', Arial, sans-serif;
+color: var(--white); /* All text is white */
+display: flex;
+flex-direction: column;
+min-height: 100vh;
+}
+
+/* FIXED TOP BAR */
+.topbar {
+position: sticky;
+top: 0;
+z-index: 1000;
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 10px 5%;
+background: var(--primary-forest);
+border-bottom: 3px solid var(--matcha-accent);
+box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.logo-container {
+height: 100px;
+display: flex;
+align-items: center;
+}
+
+.logo-img {
+height: 100%;
+width: auto;
+object-fit: contain;
+filter: brightness(0) invert(1); /* Ensure logo shows white */
+}
+
+.join-btn {
+background: var(--matcha-accent);
+color: var(--primary-forest);
+padding: 12px 24px;
+border-radius: 8px;
+text-decoration: none;
+font-weight: bold;
+font-size: 15px;
+text-transform: uppercase;
+transition: 0.3s;
+}
+
+/* VIDEO SECTION */
+.video-box {
+width: 90%;
+max-width: 1000px;
+margin: 40px auto 20px auto;
+background: var(--card-bg);
+border: 2px solid var(--matcha-accent);
+border-radius: 20px;
+padding: 20px;
+text-align: center;
+box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+}
+
+.video-box video {
+width: 100%;
+max-height: 550px;
+border-radius: 12px;
+background: #000;
+display: block;
+}
+
+.reward-btn {
+display: inline-block;
+margin-top: 20px;
+background: var(--matcha-accent);
+color: var(--primary-forest);
+padding: 15px 40px;
+border-radius: 10px;
+text-decoration: none;
+font-weight: 900;
+font-size: 18px;
+border: 2px solid var(--matcha-accent);
+transition: 0.3s;
+}
+
+/* SHINING TITLE EFFECT */
+.shining-title {
+text-align: center;
+margin-bottom: 40px;
+letter-spacing: 4px;
+font-weight: 900;
+font-size: 2.2rem;
+background: linear-gradient(to right, var(--white) 20%, var(--matcha-accent) 40%, var(--matcha-accent) 60%, var(--white) 80%);
+background-size: 200% auto;
+background-clip: text;
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+animation: shine 3s linear infinite;
+}
+
+@keyframes shine {
+to { background-position: 200% center; }
+}
+
+/* GRID SECTION */
+.how-it-works-section {
+width: 90%;
+max-width: 1100px;
+margin: 50px auto;
+}
+
+.works-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+gap: 30px;
+}
+
+.work-box {
+background: var(--card-bg);
+border: 1px solid rgba(184, 213, 176, 0.2);
+border-radius: 20px;
+padding: 25px;
+text-align: center;
+transition: transform 0.3s ease;
+display: flex;
+flex-direction: column;
+}
+
+.work-box:hover {
+transform: translateY(-5px);
+box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+border-color: var(--matcha-accent);
+}
+
+.work-box img {
+width: 100%;
+border-radius: 12px;
+margin-bottom: 20px;
+}
+
+.work-box h3 {
+font-weight: 800;
+color: var(--matcha-accent);
+font-size: 19px;
+margin: 10px 0;
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 10px;
+}
+
+.work-box p {
+text-align: left;
+line-height: 1.6;
+font-size: 14.5px;
+color: var(--white);
+flex-grow: 1;
+}
+
+.join-btn-small {
+display: block;
+margin-top: 20px;
+background: var(--matcha-accent);
+color: var(--primary-forest);
+padding: 12px;
+border-radius: 8px;
+text-decoration: none;
+font-weight: bold;
+font-size: 14px;
+text-transform: uppercase;
+transition: 0.2s;
+}
+
+/* STATUS STRIP */
+.status-strip {
+background: rgba(0,0,0,0.3);
+padding: 60px 0;
+margin-top: 60px;
+color: var(--white);
+text-align: center;
+}
+
+.status-flex {
+display: flex;
+justify-content: center;
+flex-wrap: wrap;
+gap: 40px;
+max-width: 1100px;
+margin: 0 auto;
+}
+
+.status-item h4 { font-size: 36px; margin: 10px 0; color: var(--matcha-accent); font-weight: 900; }
+
+.bip-live {
+display: inline-flex;
+align-items: center;
+gap: 8px;
+background: rgba(255,255,255,0.1);
+padding: 6px 15px;
+border-radius: 30px;
+margin-top: 10px;
+font-weight: bold;
+font-size: 12px;
+}
+
+.dot {
+height: 8px; width: 8px; background: var(--live-green); border-radius: 50%;
+animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse { 0% { opacity: 0.4; } 50% { opacity: 1; } 100% { opacity: 0.4; } }
+
+/* KNOWLEDGE CENTER */
+.section-title {
+text-align: center;
+font-size: 28px;
+font-weight: 900;
+color: var(--matcha-accent);
+margin: 60px 0 30px;
+letter-spacing: 2px;
+}
+
+.knowledge-center {
+max-width: 800px;
+margin: 0 auto 80px;
+padding: 0 20px;
+}
+
+details {
+background: var(--card-bg);
+margin-bottom: 15px;
+border-radius: 12px;
+border: 1px solid rgba(184, 213, 176, 0.1);
+}
+
+summary {
+padding: 20px;
+cursor: pointer;
+font-weight: 700;
+display: flex;
+justify-content: space-between;
+align-items: center;
+color: var(--white);
+}
+
+/* FOOTER */
+.footer {
+background: rgba(0,0,0,0.2);
+padding: 60px 6% 30px;
+border-top: 4px solid var(--matcha-accent);
+}
+
+.footer-logo { height: 90px; margin-bottom: 20px; filter: brightness(0) invert(1); }
+
+.footer-links-col h5 { margin-bottom: 20px; font-size: 18px; color: var(--matcha-accent); }
+.footer-links-col ul { list-style: none; padding: 0; margin: 0; }
+.footer-links-col li { margin-bottom: 12px; }
+.footer-links-col a { text-decoration: none; color: rgba(255,255,255,0.7); font-size: 15px; transition: 0.3s; }
+.footer-links-col a:hover { color: var(--matcha-accent); padding-left: 5px; }
+
+@media (max-width: 768px) {
+.logo-container { height: 70px; }
+.video-box video { height: auto; }
+.shining-title { font-size: 1.5rem; }
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+<div class="logo-container">
+<img src="logo.png" alt="Stream Africa" class="logo-img">
+</div>
+<a href="reward.html" class="join-btn">Join Now</a>
+</header>
+
+<main>
+<div id="video-top" class="video-box">
+<video src="video.mp4" controls poster="hero1.jpg"></video>
+<a href="reward.html" class="reward-btn">JOIN US NOW <i class="fas fa-fire"></i></a>
+</div>
+
+<div id="how-it-works" class="how-it-works-section">
+<h2 class="shining-title">HOW IT WORKS</h2>
+
+<div class="works-grid">
+
+<div class="work-box">
+<img src="hero1.jpg" alt="Livestream">
+<h3><i class="fas fa-tower-broadcast"></i> LIVESTREAM COLLAB</h3>
+<p>
+Why should only the host get paid? On STREAM, everyone earns—hosts, co-streamers, and viewers alike.<br><br>
+1. Join a verified session.<br>
+2. Engage with the content.<br>
+3. Earn rewards in real-time.
+</p>
+<a href="reward.html" class="join-btn-small">Join Now</a>
+</div>
+
+<div class="work-box">
+<img src="hero2.jpg" alt="Audio">
+<h3><i class="fas fa-headphones"></i> AUDIO COLLAB</h3>
+<p>
+Collaborate directly with artists and labels. Listening to music isn't just a hobby—it’s a career move.<br><br>
+• Stream official songs and new releases.<br>
+• Engage with music campaigns.<br>
+• Earn $1.50 (₦1,550) per qualified collaboration.
+</p>
+<a href="reward.html" class="join-btn-small">Join Now</a>
+</div>
+
+<div class="work-box">
+<img src="hero3.jpg" alt="Video">
+<h3><i class="fas fa-clapperboard"></i> VIDEO COLLAB</h3>
+<p>
+Connect with movie studios and brands. Help trailers and promos go viral through engagement.<br><br>
+• Access movie trailers and brand reels.<br>
+• Promote studio releases to wider audiences.<br>
+• Earn $2.70 (₦2,750) for every collaboration.
+</p>
+<a href="reward.html" class="join-btn-small">Join Now</a>
+</div>
+
+<div class="work-box">
+<img src="hero4.jpg" alt="Snap">
+<h3><i class="fas fa-image"></i> SNAP COLLAB</h3>
+<p>
+Collaborate with designers and record labels by engaging with official artworks and campaign posters.<br><br>
+• Interact with premium illustrations.<br>
+• Boost brand visibility through support.<br>
+• Earn $1.10 (₦1,100) per creative collab.
+</p>
+<a href="reward.html" class="join-btn-small">Join Now</a>
+</div>
+
+<div class="work-box">
+<img src="hero5.jpg" alt="Download">
+<h3><i class="fas fa-file-arrow-down"></i> FILE DOWNLOAD</h3>
+<p>
+Help brands expand their reach by downloading music, creative resources, and exclusive digital content.<br><br>
+• Access exclusive music and promos.<br>
+• Support distribution for global creators.<br>
+• Earn $1.00 (₦1,000) per download.
+</p>
+<a href="reward.html" class="join-btn-small">Join Now</a>
+</div>
+
+<div class="work-box">
+<img src="hero6.jpg" alt="Global">
+<h3><i class="fas fa-globe-africa"></i> STREAM AFRICA IS LIVE</h3>
+<p>
+No borders. No limits. STREAM AFRICA is a global movement open to the world.<br><br>
+Join thousands of creators turning digital engagement into real income. One platform. One vision. Unlimited reach.
+</p>
+<a href="reward.html" class="join-btn-small">Join Now</a>
+</div>
+
+<div class="work-box" style="grid-column: 1 / -1;">
+<div style="display: flex; flex-wrap: wrap; gap: 30px; align-items: center; text-align: left;">
+<img src="hero7.jpg" alt="Verified" style="max-width: 350px; border-radius: 12px;">
+<div style="flex: 1; min-width: 300px;">
+<h3><i class="fas fa-circle-check"></i> VERIFIED & LEGITIMATE</h3>
+<p>
+STREAM AFRICA is officially registered with the Corporate Affairs Commission (CAC) of Nigeria. We operate with full transparency.<br><br>
+• <b>Legally Recognized:</b> Fully compliant with laws.<br>
+• <b>Accountable:</b> Built on integrity.<br>
+• <b>Secure:</b> A credible platform you can depend on.
+</p>
+<a href="reward.html" class="join-btn-small" style="display: inline-block; padding: 12px 40px;">Join Now</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<section class="status-strip">
+<div class="status-flex">
+<div class="status-item">
+<span style="opacity:0.7; font-size:12px; text-transform:uppercase;">ACTIVE USERS</span>
+<h4>300,000+</h4>
+<div class="bip-live"><div class="dot"></div> LIVE NOW</div>
+</div>
+<div class="status-item">
+<span style="opacity:0.7; font-size:12px; text-transform:uppercase;">Security Level</span>
+<h4>ENCRYPTED</h4>
+</div>
+<div class="status-item">
+<span style="opacity:0.7; font-size:12px; text-transform:uppercase;">Network Health</span>
+<h4>OPTIMAL</h4>
+</div>
+</div>
+</section>
+
+<div id="knowledge-center">
+<h2 class="section-title">Knowledge Center</h2>
+<div class="knowledge-center">
+<details>
+<summary>1. How do I start? <i class="fas fa-plus"></i></summary>
+<div style="padding: 20px; color: rgba(255,255,255,0.7); font-size: 14px;">Select any channel and follow the daily tasks to credit your account instantly.</div>
+</details>
+<details>
+<summary>2. Is it secure? <i class="fas fa-plus"></i></summary>
+<div style="padding: 20px; color: rgba(255,255,255,0.7); font-size: 14px;">Yes, all collaborator data and transactions are protected by end-to-end encryption.</div>
+</details>
+<details>
+<summary>3. When can I withdraw? <i class="fas fa-plus"></i></summary>
+<div style="padding: 20px; color: rgba(255,255,255,0.7); font-size: 14px;">Withdrawals are processed as soon as you reach your regional minimum milestone.</div>
+</details>
+<details>
+<summary>4. Multi-Channel earning? <i class="fas fa-plus"></i></summary>
+<div style="padding: 20px; color: rgba(255,255,255,0.7); font-size: 14px;">Absolutely. You can participate in all 7 channels simultaneously to maximize revenue.</div>
+</details>
+<details>
+<summary>5. Technical Support? <i class="fas fa-plus"></i></summary>
+<div style="padding: 20px; color: rgba(255,255,255,0.7); font-size: 14px;">Our team is available 24/7 via the official Telegram channel and support email.</div>
+</details>
+</div>
+</div>
+</main>
+
+<footer class="footer">
+<div style="max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 40px;">
+<div style="max-width: 300px;">
+<h1 style="font-weight: 900; letter-spacing: 2px; color: var(--matcha-accent);">STREAM</h1>
+<p style="font-size: 15px; color: rgba(255,255,255,0.7); line-height: 1.5;">Stream is an innovation ecosystem connecting people, creating opportunities, and rewarding engagement.</p>
+</div>
+
+<div class="footer-links-col">
+<h5>Navigation</h5>
+<ul>
+<li><a href="#video-top">About Us</a></li>
+<li><a href="#how-it-works">Features</a></li>
+<li><a href="#knowledge-center">FAQ</a></li>
+</ul>
+</div>
+
+<div class="footer-links-col">
+<h5>Contact</h5>
+<p style="font-size: 14px; color: rgba(255,255,255,0.7);">support@stream.africa</p>
+<p style="font-size: 14px; color: rgba(255,255,255,0.7);">Lagos, Nigeria</p>
+</div>
+</div>
+<div style="text-align: center; margin-top: 60px; font-size: 11px; color: rgba(255,255,255,0.3); border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px;">
+&copy; 2026 STREAM AFRICA | ALL RIGHTS RESERVED | CAC REGISTERED
+</div>
+</footer>
+
+</body>
+  </html>
