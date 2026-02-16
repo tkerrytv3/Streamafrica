@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment | STREAM AFRICA</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            margin: 0; padding: 0;
+            background: radial-gradient(circle at center, #1a2e2a 0%, #0a110f 100%);
+            font-family: 'Inter', sans-serif; color: white;
+            min-height: 100vh; display: flex; flex-direction: column; align-items: center;
+        }
+        .logo { font-size: 32px; font-weight: 900; color: #d8e8d1; text-align: center; margin-top: 20px; letter-spacing: 5px; text-transform: uppercase; }
+        .payment-container { width: 95%; max-width: 450px; margin: 30px auto; background: rgba(216, 232, 209, 0.05); border: 1px solid rgba(216, 232, 209, 0.2); border-radius: 20px; padding: 30px 20px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); text-align: center; }
+        .timer-box { background: rgba(255, 68, 68, 0.1); border: 1px solid #ff4444; color: #ff4444; padding: 10px; border-radius: 10px; font-weight: 800; margin-bottom: 20px; font-size: 14px; }
+        #timer { font-size: 20px; display: block; }
+        .amount-box { background: rgba(216, 232, 209, 0.1); border: 2px dashed #d8e8d1; padding: 20px; border-radius: 15px; margin-bottom: 25px; }
+        .amount-text { font-size: 36px; font-weight: 900; color: #d8e8d1; }
+        .confirm-btn { width: 100%; padding: 20px; background: #d8e8d1; color: #0a110f; border: none; border-radius: 12px; font-size: 18px; font-weight: 900; cursor: pointer; text-transform: uppercase; transition: 0.3s; }
+        #verify-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(10, 17, 15, 0.98); display: none; flex-direction: column; justify-content: center; align-items: center; z-index: 9999; }
+        .loader-box { width: 80%; max-width: 320px; text-align: center; }
+        .loading-text { color: #d8e8d1; font-weight: 900; letter-spacing: 2px; margin-bottom: 20px; text-transform: uppercase; font-size: 20px; }
+        .progress-bar-container { width: 100%; height: 14px; background: rgba(216, 232, 209, 0.1); border-radius: 20px; overflow: hidden; border: 1px solid rgba(216, 232, 209, 0.3); }
+        .progress-fill { height: 100%; width: 0%; background: #d8e8d1; box-shadow: 0 0 20px rgba(216, 232, 209, 0.5); transition: width 0.2s ease; }
+        .footer { padding: 30px; color: #888; font-size: 12px; text-align: center; }
+    </style>
+</head>
+<body>
+
+<div id="verify-overlay">
+    <div class="loader-box">
+        <div class="loading-text" id="loader-title">Verifying Transaction...</div>
+        <div class="progress-bar-container">
+            <div class="progress-fill" id="bar"></div>
+        </div>
+        <p style="color:#888; margin-top:15px; font-size:12px;">Redirecting you to Management...</p>
+    </div>
+</div>
+
+<div class="logo">STREAM</div>
+
+<div class="payment-container">
+    <div class="timer-box">
+        PAYMENT WINDOW EXPIRES IN:
+        <span id="timer">20:00</span>
+    </div>
+
+    <p style="margin-bottom:20px; color:#ccc;">Click below to pay <b>₦12,000</b>. You will be redirected to the secure Paystack checkout. 🚀</p>
+
+    <div class="amount-box">
+        <div class="label" style="color:#d8e8d1; margin-bottom: 5px; font-size: 11px; text-transform: uppercase;">Total Amount</div>
+        <div class="amount-text">₦12,000</div>
+    </div>
+
+    <button class="confirm-btn" onclick="handlePayment()">PAY NOW</button>
+</div>
+
+<div class="footer">Secure Gateway &copy; STREAM AFRICA </div>
+
+<script>
+    function handlePayment() {
+        // 1. OPEN YOUR PAYSTACK SHOP LINK
+        const paystackUrl = "https://paystack.shop/pay/a4rx7bybx5";
+        window.open(paystackUrl, '_blank');
+
+        // 2. SHOW THE ANIMATED VERIFICATION OVERLAY
+        const overlay = document.getElementById('verify-overlay');
+        const bar = document.getElementById('bar');
+        const title = document.getElementById('loader-title');
+        overlay.style.display = 'flex';
+        
+        let progress = 0;
+        const interval = setInterval(() => {
+            progress += 1;
+            if (progress >= 100) {
+                progress = 100; bar.style.width = '100%'; clearInterval(interval);
+                title.innerHTML = "Success! ✅";
+                
+                // 3. REDIRECT TO YOUR TELEGRAM DM
+                setTimeout(() => {
+                    const telegramLink = "https://t.me/STREAMMANAGEMENTOFFICIAL?text=Hello+i+have+made+payment+for+my+Stream+Africa+account+activation.+Please+confirm.";
+                    window.location.href = telegramLink;
+                }, 2000);
+            } else { 
+                bar.style.width = progress + '%'; 
+            }
+        }, 80); 
+    }
+
+    function startTimer(duration, display) {
+        let timer = duration;
+        setInterval(() => {
+            let mins = Math.floor(timer / 60);
+            let secs = timer % 60;
+            display.textContent = `${mins < 10 ? '0' : ''}${mins}:${secs < 10 ? '0' : ''}${secs}`;
+            if (--timer < 0) timer = 0;
+        }, 1000);
+    }
+
+    window.onload = () => { startTimer(60 * 20, document.querySelector('#timer')); };
+</script>
+
+</body>
+</html>
